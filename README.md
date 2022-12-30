@@ -1,2 +1,2 @@
 # React
-Ejercitación en ReactJS
+Material de estudio en ReactJS
