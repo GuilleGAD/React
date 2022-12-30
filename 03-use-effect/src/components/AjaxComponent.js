@@ -5,6 +5,8 @@ const AjaxComponent = () => {
 
 
   const [usuarios, setUsuarios] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errores, setErrores] = useState("");
 
   // Generico para rellenar ese estado (array)
   const getUsuarioEstaticos = () => {
@@ -33,34 +35,70 @@ const AjaxComponent = () => {
     ]);
   }
 
-  const getUsuarioAjaxPms = () =>{
+  const getUsuarioAjaxPms = () => {
     fetch("https://reqres.in/api/users?page=2")
       .then(respuesta => respuesta.json())
       .then(resultado_final => {
         setUsuarios(resultado_final.data);
       },
-      error => {
-        console.log("Error");
-      })
+        error => {
+          console.log("Error");
+        })
+  }
+
+  const getUsuarioAjaxAW = async () => {
+
+    setTimeout(async () => {
+      try{
+        const peticion = await fetch("https://reqres.in/api/users?page=2");
+        const { data } = await peticion.json();
+        setUsuarios(data);
+        setLoading(false);
+      }catch(error){
+        setErrores(error.message);
+      }
+      
+    }, 2000);
   }
 
   useEffect(() => {
     //getUsuarioEstaticos();
-    getUsuarioAjaxPms();
+    //getUsuarioAjaxPms();
+    getUsuarioAjaxAW();
   }, []);
 
-  return (
-    <div>
-      <h2>Listado de usuarios via AJAX</h2>
-      <ol className='usuarios'>
-        {
-          usuarios.map(usuario => {
-            return <li key={usuario.id}>{usuario.first_name} {usuario.last_name}</li>
-          })
-        }
-      </ol>
-    </div>
-  )
+  if (errores!==""){
+    // Cuando pasa algun error
+    return (
+      <div className='errores'>
+        {errores}
+      </div>
+    );
+  }else if (loading) {
+    // Cuando está cargando
+    return (
+      <div className='loading'>
+        Cargando datos....
+      </div>
+    );
+  } else {
+    // Cuando ha ido todo bien
+    return (
+      <div>
+        <h2>Listado de usuarios via AJAX</h2>
+        <ol className='usuarios'>
+          {
+            usuarios.map(usuario => {
+              return <li key={usuario.id}>
+                <img src={usuario.avatar} width="30"/>
+                &nbsp;
+                {usuario.first_name} {usuario.last_name}</li>
+            })
+          }
+        </ol>
+      </div>
+    )
+  }
 }
 
 export default AjaxComponent
