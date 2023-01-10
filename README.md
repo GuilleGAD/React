@@ -1,2 +1,2 @@
 # React
-Material de estudio en ReactJS
+Proyectos desarrollados en curso de Master en ReactJS
