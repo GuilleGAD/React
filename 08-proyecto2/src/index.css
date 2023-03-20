@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  position: relative;
+  padding-bottom: 3em;
+  min-height: 100vh;
+  overflow: scroll;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.copyright {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.layout{
+  width: 85%;
+  margin: 0 auto;
+}
+
+.navbar-brand {
+  position: relative;
+  width: 70px;
+  left: 35px;
+  background-size: contain;
+}
+
+.navbar-nav{
+  position: relative;
+  right: 35px;
+}
+
+header li {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.nombre-logo{
+  position: relative;
+  flex-grow: 2;
+  display: flex;
+  left: 35px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.page .heading {
+ font-size: 40px;
+ font-weight: bold;
+}
+
+.contacto {
+  min-height: 90vh;
+}
